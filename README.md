@@ -19,31 +19,31 @@ graph LR
 
 Here the page to download the package and the checksum in "SHA256"
 
-[Download Open-JDK-17](https://packages.debian.org/en/bookworm/amd64/openjdk-17-jdk/download)
+[Download Sha256 from Open-JDK-17](https://packages.debian.org/en/bookworm/amd64/openjdk-17-jdk/download)
 
-Check the checksum for the downloaded file in PowerShell
+Store the checksum in File:[openjdk-17-jdk_17.0.14+7-1~deb12u1_amd64.deb.sha256.txt](./docker/bin-sources/openjdk-17-jdk_17.0.14+7-1~deb12u1_amd64.deb.sha256.txt)
 
-Store the checksum in File:maven-mvnd-1.0.2-linux-amd64.sha512.txt
+Check the checksum for the downloaded file in PowerShell as following
 
 ```
 #Download
 Invoke-WebRequest -Uri "http://ftp.de.debian.org/debian/pool/main/o/openjdk-17/openjdk-17-jdk_17.0.14+7-1~deb12u1_amd64.deb" -OutFile openjdk-17-jdk_17.0.14+7-1~deb12u1_amd64.deb
 CertUtil -hashfile openjdk-17-jdk_17.0.14+7-1~deb12u1_amd64.deb SHA256
-$hashCode="c403f95b7018675f1ca8caed92b92c448e77c89bb0bbfb7ca0bfacee545639d5dec8d03ceb8262e7a30d9026a3504fe7f53bdef4cd229fa4f7fb8c024d25fd26"
-if ((Get-Content maven-mvnd-1.0.2-linux-amd64.sha512.txt -Raw) -eq $hashCode) { echo Match } else { echo No match }
+$hashCode="8cb06bdd2f39bdc4c14b9324d1087ed6921695f2d71f39751debebb14da14a22"
+if ((Get-Content openjdk-17-jdk_17.0.14+7-1~deb12u1_amd64.deb.sha256.txt -Raw) -eq $hashCode) { echo Match } else { echo No match }
 ```
 The result should be: "Match"
 
 Here the Web-Page for Maven download:
 [Download Maven-Linux-Daemon](https://maven.apache.org/download.cgi?.)
 
-Store the checksum in File:openjdk-17-jdk_17.0.14+7-1~deb12u1_amd64.deb.sha256.txt
+Store the checksum in File:[maven-mvnd-1.0.2-linux-amd64.sha512.txt](./docker/bin-sources/maven-mvnd-1.0.2-linux-amd64.sha512.txt)
 
-Check the checksum for the downloaded file
+Check the checksum for the downloaded file in PowerShell
 ```
 CertUtil -hashfile maven-mvnd-1.0.2-linux-amd64.zip SHA512
-$hashCode="8cb06bdd2f39bdc4c14b9324d1087ed6921695f2d71f39751debebb14da14a22"
-if ((Get-Content openjdk-17-jdk_17.0.14+7-1~deb12u1_amd64.deb.sha256.txt -Raw) -eq $hashCode) { echo Match } else { echo No match }
+$hashCode='c403f95b7018675f1ca8caed92b92c448e77c89bb0bbfb7ca0bfacee545639d5dec8d03ceb8262e7a30d9026a3504fe7f53bdef4cd229fa4f7fb8c024d25fd26'
+if ((Get-Content maven-mvnd-1.0.2-linux-amd64.sha512.txt -Raw) -eq $hashCode) { echo Match } else { echo No match }
 ```
 The result should be: "Match"
 
